@@ -1,0 +1,50 @@
+.App {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #0474cc;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+input {
+  margin: 20px;
+  border: 2px solid #0474cc;
+  padding: 5px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #0474cc;
+  box-shadow: 0 0 5px #0474cc;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #0474cc;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #035a99;
+}
+
+h3 {
+  color: #333;
+  font-size: 2rem;
+}
