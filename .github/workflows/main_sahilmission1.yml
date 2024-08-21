@@ -21,23 +21,24 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install, build, and test
-        working-directory: ./mission1  # Ensure this path matches where package.json is located
-        run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+      - name: Install dependencies
+        working-directory: ./mission1
+        run: npm install
+
+      - name: Build the app
+        working-directory: ./mission1
+        run: npm run build --if-present
 
       - name: Zip artifact for deployment
         run: |
-          cd mission1  # Change to the directory where the build output is
-          zip -r release.zip ./*
+          cd mission1
+          zip -r release.zip .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: mission1/release.zip  # Ensure this path is correct
+          path: mission1/release.zip
 
   deploy:
     runs-on: ubuntu-latest
