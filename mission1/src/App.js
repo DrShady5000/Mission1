@@ -44,17 +44,25 @@ function App() {
       <img src={logo} alt="Turners Cars Logo" className="logo" />
       <h1>Turners Cars Vehicle Identification</h1>
       <p>Please upload an image of your vehicle and we will help identify the vehicle type and brand.</p>
-      <div>
+      <div className="upload-section">
         <input type="file" onChange={onFileChange} />
         <button onClick={onFileUpload}>Upload and Identify</button>
       </div>
+      {selectedFile && (
+        <div className="image-preview">
+          <img 
+            src={URL.createObjectURL(selectedFile)} 
+            alt="Selected file preview" 
+          />
+        </div>
+      )}
       {result && (
-        <div>
+        <div className="result">
           <h3>Brand: {result.brand}</h3>
           <h3>Vehicle Type: {result.vehicleType}</h3>
         </div>
       )}
-      {error && <div><h3 style={{ color: 'red' }}>Error: {error}</h3></div>}
+      {error && <div className="error"><h3>Error: {error}</h3></div>}
     </div>
   );
 }

@@ -1,3 +1,6 @@
+/* App.css */
+
+/* General App Styles */
 .App {
   text-align: center;
   margin-top: 50px;
@@ -20,6 +23,7 @@ p {
   margin-bottom: 30px;
 }
 
+/* File Input Styles */
 input {
   margin: 20px;
   border: 2px solid #0474cc;
@@ -32,6 +36,7 @@ input:focus {
   box-shadow: 0 0 5px #0474cc;
 }
 
+/* Button Styles */
 button {
   padding: 10px 20px;
   background-color: #0474cc;
@@ -42,6 +47,25 @@ button {
 
 button:hover {
   background-color: #035a99;
+}
+
+/* Result and Error Styles */
+.image-preview {
+  margin-top: 20px;
+}
+
+.image-preview img {
+  width: 300px; /* Adjust the size as needed */
+  height: auto;
+}
+
+.result {
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+  margin-top: 20px;
 }
 
 h3 {
