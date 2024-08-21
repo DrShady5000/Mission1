@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - Mission1Backend
+name: Build and deploy Node.js app to Azure Web App - SahilMission1
 
 on:
   push:
@@ -21,20 +21,24 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+      - name: Install dependencies
+        working-directory: ./mission1
+        run: npm install
+
+      - name: Build the app
+        working-directory: ./mission1
+        run: npm run build --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: |
+          cd mission1
+          zip -r release.zip .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: release.zip
+          path: mission1/release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -43,7 +47,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write # This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
@@ -52,20 +56,19 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip
-      
+        run: unzip release.zip -d ./deploy
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_85EEE0EED1764E77B5E702006115A797 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0975C8AC86104835916FE482350D57AA }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D8B37D343E314A078D6EDADC0782D962 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_96AD4F83ECD841FDBFBB6E1E4FAFCEDD }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_DA3B7E8FAE49436CACA6033F46675961 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_60A8C1DDF45C417CA17A1870E7E0B354 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'Mission1Backend'
+          app-name: 'SahilMission1'
           slot-name: 'Production'
-          package: .
-          
+          package: ./deploy
