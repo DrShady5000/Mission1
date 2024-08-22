@@ -4,14 +4,13 @@ const multer = require('multer');
 const axios = require('axios'); 
 const fs = require('fs'); 
 const path = require('path'); 
-
 const app = express(); 
 const port = 5000; 
 
 app.use(express.json()); 
 app.use(cors()); 
 
-const upload = multer({ dest: 'uploads/' }); // Configure Multer to save uploaded files to the 'uploads' directory
+const upload = multer({ dest: 'uploads/' }); 
 
 // Endpoint URL and prediction key for the Custom Vision API
 const predictionEndpointUrl = 'https://sahilmission1-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/be826310-a117-4f55-a61c-1c19afb4aa71/classify/iterations/Iteration5/image';
@@ -27,7 +26,7 @@ function classifyTag(tag) {
   return null; // Return null if tag does not match expected format
 }
 
-// POST route to handle image uploads and classification
+// Route to handle image uploads and classification
 app.post('/upload', upload.single('file'), async (req, res) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded'); // Respond with error if no file is uploaded
