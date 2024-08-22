@@ -3,12 +3,8 @@ name: Deploy Backend to Azure App Service
 on:
   push:
     branches:
-      - main  # Adjust if you use a different branch for deployment
+      - main
   workflow_dispatch:
-
-permissions:
-  id-token: write
-  contents: read
 
 jobs:
   build-and-deploy:
@@ -21,11 +17,11 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '21.7.3'  # Use your Node.js version
+        node-version: '21.7.3'
 
     - name: Install dependencies
       run: npm install
-      working-directory: ./mission1backend  # Adjust to your backend directory
+      working-directory: ./mission1backend
 
     - name: Login to Azure
       uses: azure/login@v1
@@ -38,6 +34,6 @@ jobs:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'Mission1Backend'  # Replace with your Azure App Service name
+        app-name: 'Mission1Backend'
         slot-name: 'production'
-        package: ./mission1backend  # Adjust if necessary, generally the root of the repo
+        package: './mission1backend'  # Adjust if necessary
