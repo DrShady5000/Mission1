@@ -6,6 +6,10 @@ on:
       - main  # Adjust if you use a different branch for deployment
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
