@@ -25,7 +25,7 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-      working-directory: ./mission1-backend  # Adjust to your backend directory
+      working-directory: ./mission1backend  # Adjust to your backend directory
 
     - name: Login to Azure
       uses: azure/login@v1
@@ -40,4 +40,4 @@ jobs:
       with:
         app-name: 'Mission1Backend'  # Replace with your Azure App Service name
         slot-name: 'production'
-        package: ./mission1-backend  # Adjust if necessary, generally the root of the repo
+        package: ./mission1backend  # Adjust if necessary, generally the root of the repo
