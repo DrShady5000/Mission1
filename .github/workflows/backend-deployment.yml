@@ -1,0 +1,36 @@
+name: Deploy Backend to Azure App Service
+
+on:
+  push:
+    branches:
+      - main  # Adjust if you use a different branch for deployment
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '21.7.3'  # Use your Node.js version
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./mission1-backend   
+
+    - name: Build the project
+      run: npm run build
+      working-directory: ./mission1-backend   
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'Mission1Backend'  # Replace with your Azure App Service name
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ./mission1-backend   y
