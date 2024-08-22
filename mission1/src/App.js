@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import logo from './images/logo.png'; // Adjust the path based on where you place the logo
+import logo from './images/logo.png'; 
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
