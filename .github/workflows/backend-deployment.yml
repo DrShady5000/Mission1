@@ -23,10 +23,6 @@ jobs:
       run: npm install
       working-directory: ./mission1-backend  # Adjust to your backend directory
 
-    - name: Build the project
-      run: npm run build
-      working-directory: ./mission1-backend  # Adjust to your backend directory
-
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
@@ -34,5 +30,3 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: ./mission1-backend  # Adjust if necessary, generally the root of the repo
-
-          
